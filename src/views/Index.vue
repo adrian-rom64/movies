@@ -1,5 +1,12 @@
 <template>
-  <div>{{ this.movies.length }}</div>
+  <div class="container">
+    <h3>We got {{ this.movies.length }} movies this week!</h3>
+    <ul>
+      <li v-for="movie in movies" :key="movie.id">
+        {{ movie.title }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
@@ -37,5 +44,8 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="scss">
-
+  .container {
+    text-align: left;
+  }
+  h3 { text-align: center; }
 </style>
