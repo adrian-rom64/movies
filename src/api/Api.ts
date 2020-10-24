@@ -18,4 +18,6 @@ const get = async (path: string) => {
   }
 }
 
-export default { get }
+export default {
+  baseUrl, apiKey, get
+}
