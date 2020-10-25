@@ -4,7 +4,7 @@ const logs = true
 
 const get = async (path: string) => {
   try {
-    const url = `${baseUrl}${path}?api_key=${apiKey}`
+    const url = `${baseUrl}${path}${path.includes('?') ? '&' : '?'}api_key=${apiKey}`
     const res = await fetch(url)
     if (res.status !== 200) {
       logs && console.error(res.status)

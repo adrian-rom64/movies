@@ -1,17 +1,19 @@
 <template>
   <div class="container">
     <img v-bind:src="imageLink" alt="movie-cover" @click="onClick" />
-    <h3 @click="onClick">{{ title }}</h3>
+    <VoteBadge :vote="vote" />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { imageLink as getImageLink } from '../api/Requests'
+import VoteBadge from './VoteBadge.vue'
+
 export default Vue.extend({
   props: {
     imagePath: String,
-    title: String
+    vote: Number
   },
   computed: {
     imageLink () {
@@ -22,6 +24,9 @@ export default Vue.extend({
     onClick () {
       alert('cycki')
     }
+  },
+  components: {
+    VoteBadge
   }
 })
 </script>
@@ -29,15 +34,18 @@ export default Vue.extend({
 <style scoped>
   .container {
     width: 300px;
-    height: 500px;
-    padding: 10px;
+    height: 450px;
+    padding: 15px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    position: relative;
+    transition: all 0.4s;
   }
   img {
-    width: 280px;
+    width: 100%;
+    height: 100%;
     transition: all 0.4s;
     border-radius: 8px;
     box-shadow: 5px 5px 10px #555;
@@ -45,11 +53,8 @@ export default Vue.extend({
   }
   img:hover {
     filter: brightness(1.2);
-    transform: scale(1.05);
   }
-  h3 {
-    color: #444;
-    margin-top: 30px;
-    cursor: pointer;
+  .container:hover {
+    transform: scale(1.05);
   }
 </style>

@@ -11,3 +11,9 @@ export const fetchTop = async (): Promise<object[]> => {
 export const imageLink = (imagePath: string, width = 300) => {
   return `${imageBaseUrl}/w${width}${imagePath}`
 }
+
+export const search = async (query: string): Promise<object[]> => {
+  const res = await Api.get(`/search/movie?query=${query}`)
+  if (!res.status) return []
+  return res.data.results.slice(0, 5)
+}

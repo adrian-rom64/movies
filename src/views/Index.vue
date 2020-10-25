@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <h1>We got {{ this.movies.length }} movies this week!</h1>
+    <SearchBox />
     <template v-for="movie in movies">
-      <MovieCover :title="movie.title" :imagePath="movie.poster_path" :key="movie.id"/>
+      <MovieCover :vote="movie.vote_average" :imagePath="movie.poster_path" :key="movie.id"/>
     </template>
   </div>
 </template>
@@ -10,6 +11,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import MovieCover from '../components/MovieCover.vue'
+import SearchBox from '../components/SearchBox.vue'
 import * as Requests from '../api/Requests'
 
 interface State {
@@ -40,7 +42,7 @@ export default Vue.extend({
     }
   },
   components: {
-    MovieCover
+    MovieCover, SearchBox
   }
 })
 </script>
